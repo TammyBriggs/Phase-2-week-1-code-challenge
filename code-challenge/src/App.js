@@ -10,6 +10,7 @@ function App() {
     category: '',
     amount: ''
   });
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:3000/transactions')
@@ -43,8 +44,17 @@ function App() {
     });
   };
 
+  const handleSearch = e => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredData = data.filter(row => row.description.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <div>
+      <form>
+        <input type="text" placeholder="Search by description" value={searchTerm} onChange={handleSearch} />
+      </form>
     <table id='table'>
       <thead>
         <tr>
@@ -56,7 +66,7 @@ function App() {
         </tr>
       </thead>
       <tbody>
-        {data.map(row => (
+      {filteredData.map(row => (
           <tr key={row.id}>
             <td>{row.id}</td>
             <td>{row.date}</td>
