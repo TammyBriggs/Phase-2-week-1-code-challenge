@@ -35,6 +35,17 @@ function App() {
       category: '',
       amount: ''
     });
+    // PUT request to update the JSON file with the new transaction data
+fetch(`http://localhost:3000/transactions/${newId}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(newTransaction)
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
   };
 
   const handleChange = e => {
@@ -47,6 +58,22 @@ function App() {
   const handleSearch = e => {
     setSearchTerm(e.target.value);
   };
+
+  const handleDelete = id => {
+    const newData = data.filter(row => row.id !== id);
+    setData(newData); 
+
+// DELETE request to remove the transaction data from the JSON file
+fetch(`http://localhost:3000/transactions/${id}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+};
 
   const filteredData = data.filter(row => row.description.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -73,6 +100,7 @@ function App() {
             <td>{row.description}</td>
             <td>{row.category}</td>
             <td>{row.amount}</td>
+            <td><button onClick={() => handleDelete(row.id)}>Delete</button></td>
           </tr>
         ))}
       </tbody>
@@ -99,6 +127,6 @@ function App() {
      </div>
 
    );
- }
-
+}
+      
 export default App;
