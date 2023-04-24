@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 function App() {
 
   const [data, setData] = useState([]);
-//   const [formData, setFormData] = useState({
-//     date: '',
-//     description: '',
-//     category: '',
-//     amount: ''
-//   });
+  const [formData, setFormData] = useState({
+    date: '',
+    description: '',
+    category: '',
+    amount: ''
+  });
 
   useEffect(() => {
     fetch('http://localhost:3000/transactions')
@@ -17,31 +17,31 @@ function App() {
       .then(json => setData(json));
   }, []);
 
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     const newId = data.length + 1;
-//     const newTransaction = {
-//       id: newId,
-//       date: formData.date,
-//       description: formData.description,
-//       category: formData.category,
-//       amount: formData.amount
-//     };
-//     setData([...data, newTransaction]);
-//     setFormData({
-//       date: '',
-//       description: '',
-//       category: '',
-//       amount: ''
-//     });
-//   };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newId = data.length + 1;
+    const newTransaction = {
+      id: newId,
+      date: formData.date,
+      description: formData.description,
+      category: formData.category,
+      amount: formData.amount
+    };
+    setData([...data, newTransaction]);
+    setFormData({
+      date: '',
+      description: '',
+      category: '',
+      amount: ''
+    });
+  };
 
-//   const handleChange = e => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value
-//     });
-//   };
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   return (
     <div>
@@ -67,25 +67,25 @@ function App() {
         ))}
       </tbody>
     </table>
-{/* //     <form onSubmit={handleSubmit}>
-//         <label>
-//           Date:
-//           <input type="text" name="date" value={formData.date} onChange={handleChange} required />
-//         </label>
-//         <label>
-//           Description:
-//           <input type="text" name="description" value={formData.description} onChange={handleChange} required />
-//         </label>
-//         <label>
-//           Category:
-//           <input type="text" name="category" value={formData.category} onChange={handleChange} required />
-//         </label>
-//         <label>
-//           Amount:
-//           <input type="text" name="amount" value={formData.amount} onChange={handleChange} required />
-//         </label>
-//         <button type="submit">Add Transaction</button>
-//       </form> */}
+     <form onSubmit={handleSubmit}>
+         <label>
+           Date:
+           <input type="text" name="date" value={formData.date} onChange={handleChange} required />
+         </label>
+         <label>
+           Description:
+           <input type="text" name="description" value={formData.description} onChange={handleChange} required />
+         </label>
+         <label>
+           Category:
+           <input type="text" name="category" value={formData.category} onChange={handleChange} required />
+         </label>
+         <label>
+           Amount:
+           <input type="text" name="amount" value={formData.amount} onChange={handleChange} required />
+         </label>
+         <button type="submit">Add Transaction</button>
+       </form>
      </div>
 
    );
