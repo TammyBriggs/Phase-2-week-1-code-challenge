@@ -7,7 +7,7 @@
 This is a react application that displays a list or recent bank transactions along with transaction details. It shows the transaction id (each transaction has a unique id), transaction description, date of transaction, and the amount transacted.
 
 ## Setup/Installation Requirements
-* To view the web app, visit: 
+* To view the web app, visit: https://phase-2-week-1-code-challenge-3dfj.vercel.app/
 
 ## Known Bugs
 Adding data to the table does not persist even with the presence of a PUT method.
