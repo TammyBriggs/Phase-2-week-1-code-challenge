@@ -13,7 +13,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/transactions')
+    fetch('https://my-json-server.typicode.com/TammyBriggs/Phase-2-week-1-code-challenge/transactions')
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => alert(error))
@@ -43,7 +43,7 @@ function App() {
       amount: ''
     });
     // PUT request to update the JSON file with the new transaction data
-    fetch(`http://localhost:3000/transactions/${newId}`, {
+    fetch(`https://my-json-server.typicode.com/TammyBriggs/Phase-2-week-1-code-challenge/transactions/${newId}`, {
       method: 'PUT' ,
       headers: {
       'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ function App() {
     setData(newData); 
 
 // DELETE request to remove the transaction data from the JSON file
-fetch(`http://localhost:3000/transactions/${id}`, {
+fetch(`https://my-json-server.typicode.com/TammyBriggs/Phase-2-week-1-code-challenge/transactions/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json'
