@@ -25,4 +25,4 @@ Push to the branch: git push origin my-new-feature.
 Submit a pull request.
 
 ### License
-Tunez is licensed under the MIT License. See `LICENSE` for more information.
+Bank of Flatiron is licensed under the MIT License. See `LICENSE` for more information.
